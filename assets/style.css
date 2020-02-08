@@ -1,0 +1,75 @@
+.header {
+  font-family: 'Bangers', cursive;
+  font-size: 12vh;
+}
+
+body {
+  width: auto;
+  white-space: nowrap;
+}
+
+.main-button{
+  font-size: 8vh;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: rgb(72, 161, 72);
+}
+
+.task-area {
+  overflow-x: auto;
+  width: auto;
+  height: 82vh;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  margin-bottom: 0vh;
+}
+
+.task-card {
+  font-family: 'Bangers', cursive;
+  width: 40vw;
+  height: 75vh;
+  margin-bottom: 0vh;
+}
+
+.list-items {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: large;
+}
+
+.task-delete {
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: large;
+  
+}
+
+.task-add{
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: large;
+  font: rgb(72, 161, 72);
+}
+
+.check-box{
+  width: 4vh;
+  height: 4vh;
+  
+}
+
+.delete-button{
+  display: flex;
+  justify-content: right;
+  align-content: flex-end;
+  
+}
+
+/* .add-button{
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  padding: 1.5em;
+  justify-content: end;
+} */
