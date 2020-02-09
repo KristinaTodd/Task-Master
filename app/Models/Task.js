@@ -1,18 +1,17 @@
 import { generateId } from "../utils.js";
 
-
-
 export default class Task {
+
   constructor(data) {
-    this.tasks = data.tasks || []
+    this.taskName = data.taskName
+    this.taskId = data.taskId || generateId()
   }
 
-  get taskTemplate() {
+  TaskTemplate(listId) {
+    debugger
     return `
-    <div class="col-10 list-items"><span><i class="fas fa-angle-right"></i> ${this.tasks}</span></div>
-    <div class="col-2">
-      <button onclick="app.listController.deleteTask('${this.tasks}')" class="task-delete text-danger" title="DELETE">X</button>
-    </div>
+      <div class="col-10 list-items"><span><i class="fas fa-angle-right"></i> ${this.taskName}</span></div>
+      <div class="col-2"> <button onclick="app.listController.deleteTask('${this.taskId}', '${listId}')" class="task-delete text-danger" title="DELETE">X</button></div>
     `
   }
 }

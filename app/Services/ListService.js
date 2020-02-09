@@ -1,6 +1,6 @@
 import List from "../Models/List.js";
-import Task from "../Models/Task.js";
 import _store from "../store.js"
+import Task from "../Models/Task.js"
 
 //Public
 class ListService {
@@ -15,10 +15,11 @@ class ListService {
     console.log(_store.State.lists)
   }
 
-  addTask(newTask) {
-    let list = _store.State.lists
-    list.push(newTask)
-
+  addTask(newTask, listId) {
+    newTask = new Task(newTask)
+    let list = _store.State.lists.find(l => l.id === listId)
+    list.tasks.push(newTask)
+    _store.saveState()
   }
 
 
@@ -28,10 +29,11 @@ class ListService {
     _store.saveState()
   }
 
-  deleteTask(task) {
-    let list = _store.State.lists[task]
-    let newTasks = list.tasks.filter(t => t !== list.tasks)
-    list.tasks = newTasks
+  deleteTask(taskId, listId) {
+    let list = _store.State.lists.find(l => l.id === listId)
+    let tasks = list.tasks.filter(task => task.taskId !== taskId)
+    list.tasks = tasks
+
     _store.saveState()
   }
 

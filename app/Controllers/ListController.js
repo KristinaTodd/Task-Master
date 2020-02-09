@@ -3,27 +3,21 @@ import _store from "../store.js"
 
 //TODO Don't forget to render to the screen after every data change.
 function _drawLists() {
-  let tasks = _store.State.lists
+
+  let lists = _store.State.lists
   let listElem = document.getElementById("task-area")
+
   let template = ""
 
-  tasks.forEach(task => {
-    template += task.Template
+  lists.forEach(task => {
+    template += task.listTemplate
   })
 
   listElem.innerHTML = template
+
 }
 
-function _drawTasks() {
-  let tasks = _store.State.lists
-  let taskElem = document.getElementById("tasks")
 
-  let template = ""
-
-  tasks.forEach(tasks => {
-    template += tasks.
-  })
-}
 
 //Public
 export default class ListController {
@@ -38,7 +32,6 @@ export default class ListController {
     let formData = event.target
     let newList = {
       title: formData.title.value,
-      tasks: formData.task.value,
     }
     console.log(newList)
     ListService.addList(newList)
@@ -51,32 +44,42 @@ export default class ListController {
 
   }
 
-  addTask(event) {
+  addTask(event, id) {
     event.preventDefault()
 
     let formData = event.target
     let newTask = {
-      tasks: formData.task.value
+      taskName: formData.taskText.value
     }
-    ListService.addTask(newTask)
+
+    let listId = id
+    ListService.addTask(newTask, listId)
 
     formData.reset()
     _drawLists()
+    // _drawTasks(listId)
     _store.saveState()
   }
 
   //NOTE: After the store loads, we can automatically call to draw the lists.
   deleteList(id) {
-    ListService.deleteList(id)
-    _store.saveState()
-    _drawLists()
+    let didConfirm = confirm("Are you sure you want to delete this list?");
+    if (didConfirm) {
+      ListService.deleteList(id)
+      _store.saveState()
+      _drawLists()
+    }
     console.log(_store.State.lists)
   }
 
-  deleteTask(task) {
-    ListService.deleteTask(task)
-    _store.saveState()
-    _drawLists()
+  deleteTask(taskId, listId) {
+
+    let didConfirm = confirm("Are you sure you want to delete this task?");
+    if (didConfirm) {
+      (ListService.deleteTask(taskId, listId))
+      _store.saveState()
+      _drawLists()
+    }
     console.log(_store.State.lists)
   }
 }
