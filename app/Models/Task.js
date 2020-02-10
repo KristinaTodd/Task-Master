@@ -8,7 +8,6 @@ export default class Task {
   }
 
   TaskTemplate(listId) {
-    debugger
     return `
       <div class="col-10 list-items"><span><i class="fas fa-angle-right"></i> ${this.taskName}</span></div>
       <div class="col-2"> <button onclick="app.listController.deleteTask('${this.taskId}', '${listId}')" class="task-delete text-danger" title="DELETE">X</button></div>
